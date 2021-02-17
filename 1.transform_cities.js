@@ -6,7 +6,7 @@ const cities = JSON.parse(data);
 
 const KtoC = (k) => k - 273.15;
 const updateTemp = (city) => {
-  const temp = KtoC(city.temp);
+  const temp = Math.round(KtoC(city.temp));
   return { ...city, temp };
   // ramda way
   // return R.merge(city, { temp });
