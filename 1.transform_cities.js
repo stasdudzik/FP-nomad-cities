@@ -23,5 +23,5 @@ const firstCity = cities[0];
 const updatedCity = updateTemp(KtoC)(firstCity);
 console.log(updatedCity);
 
-// we can simplyfy this weird call with Ramda curry function
+// we can simplify this weird call with Ramda curry function
 // how to disappear the second pair of parents?
