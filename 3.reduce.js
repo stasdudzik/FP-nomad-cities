@@ -13,7 +13,7 @@ const updateTemp = R.curry((convertFn, city) => {
   // return R.merge(city, { temp });}
 });
 const updtCities = R.map(updateTemp(KtoF), cities);
-console.log(updtCities);
+// console.log(updtCities);
 
 // currying
 
@@ -23,3 +23,12 @@ const updatedCity = updateTemp(KtoC, firstCity);
 
 // we can simplyfy this weird call with Ramda curry function
 // how to disappear the second pair of parents?
+
+const totalCostReducer = (acc, city) => {
+  const { cost = 0 } = city;
+  return acc + cost;
+};
+
+const cityCount = updtCities.length;
+const totalCost = updtCities.reduce(totalCostReducer, 0);
+console.log(totalCost / cityCount);
