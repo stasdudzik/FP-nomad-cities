@@ -6,21 +6,19 @@ const cities = JSON.parse(data);
 
 const KtoC = (k) => k - 273.15;
 const KtoF = (k) => (k * 9) / 5 - 459.67;
-const updateTemp = (convertFn) => {
-  return (city) => {
-    const temp = Math.round(convertFn(city.temp));
-    return { ...city, temp };
-    // ramda way
-    // return R.merge(city, { temp });}
-  };
-};
-const updtCities = cities.map(updateTemp(KtoF));
+const updateTemp = R.curry((convertFn, city) => {
+  const temp = Math.round(convertFn(city.temp));
+  return { ...city, temp };
+  // ramda way
+  // return R.merge(city, { temp });}
+});
+const updtCities = R.map(updateTemp(KtoF), cities);
 console.log(updtCities);
 
 // currying
 
 const firstCity = cities[0];
-const updatedCity = updateTemp(KtoC)(firstCity);
+const updatedCity = updateTemp(KtoC, firstCity);
 console.log(updatedCity);
 
 // we can simplyfy this weird call with Ramda curry function
